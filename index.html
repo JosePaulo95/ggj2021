@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
 	</head>
 	<body>
-		<div id="app" v-on:mouseup="release()">
+		<div id="app">
 			<section class="hero is-success is-fullheight">
 				<div class="hero-body">
 					<div class="container has-text-centered">
@@ -18,45 +18,21 @@
 										<img class="full-height" src="https://wallpaperaccess.com/full/797185.png">
 									</figure>
 								</div>
-								<div class="h-50 is-black bordered-top">
-									<div style="display: none;" class="section section-capitular">
-										<h1>Capítulo 1</h1>
-										<h2>descrição 1 aiiasj aijs ais aisj a</h2>
-
-										<div class="bloco-escolha">
-											<p>&nbsp;- Bater</p>
-											<p>&nbsp;- Curabitur accumsan turpis pharetra </p>	
-											<p>&nbsp;- Não, senhor </p>	
+								<div id="#panel" class="h-50 is-black bordered-top">
+									<div v-for="(bloco, index) in content">
+										<div v-if="index==0" class="section section-capitular">
+											<h1>{{bloco.titulo}}</h1>
+											<h2>{{bloco.subtitulo}}</h2>
 										</div>
-									</div>
-
-									<div class="has-text-left section-corrido typewriter">
-										<div class="bloco-fala">
-											<p class="has-text-weight-bold">RÓSSIA</p>
-											<p>💋💋💋</p>
-											<p>...</p>
-											<p>Ah, Jobin! Precisamos da benção de meu pai para ficarmos juntos! </p>	
+	
+										<div v-else class="has-text-left section-corrido">
+											<div class="bloco-fala">
+												<p class="has-text-weight-bold">{{bloco.autor}}</p>
+												<div v-for="row in bloco.fala.split('\n')">
+													<p>{{row}}</p>
+												</div>
+											</div>
 										</div>
-										<div class="bloco-fala">
-											<p class="has-text-weight-bold">JOBIM</p>
-											<p>Curabitur accumsan turpis pharetra </p>	
-										</div>
-										<div class="bloco-fala">
-											<p class="has-text-weight-bold">RÓSSIA</p>
-											<p>Ah, Jobin! Precisamos da benção de meu pai para ficarmos juntos! </p>	
-										</div>
-										<div class="bloco-fala">
-											<p class="has-text-weight-bold">JOBIM</p>
-											<p>Curabitur accumsan turpis pharetra </p>	
-										</div>
-										<div class="bloco-fala">
-											<p class="has-text-weight-bold">RÓSSIA</p>
-											<p>Ah, Jobin! Precisamos da benção de meu pai para ficarmos juntos! </p>	
-										</div>
-										<div class="bloco-fala">
-											<p class="has-text-weight-bold">JOBIM</p>
-											<p>Curabitur accumsan turpis pharetra </p>	
-										</div>	
 									</div>
 								</div>
 							</div>
@@ -69,11 +45,9 @@
 		
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-		
-		<script src="js/disableDefaultDrag.js"></script>
-		<script src="js/audioController.js"></script>
-		<script src="js/spriteManager.js"></script>
-		<script src="js/switcher.js"></script>
+
+		<script src="uTests/check.js"></script>
+		<script src="uTests/ublocos.js"></script>
 
 		<script src="js/main.js"></script>
 	</body>
