@@ -50,6 +50,8 @@ var App = new Vue({
         this.content.push(this.capitulo0[this.index])
         this.index++;
         panel_dom.scrollTop = panel_dom.scrollHeight;
+      }else{
+        this.reset()
       }
     },
     goTo(capitulo_index, bloco_index){
