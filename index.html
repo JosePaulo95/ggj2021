@@ -20,13 +20,13 @@
 									</figure>
 								</div>
 								<div id="#panel" class="h-50 is-black bordered-top">
-									<div v-for="(bloco, index) in content">
-										<div v-if="index==0" class="section section-capitular">
-											<h1>{{bloco.titulo}}</h1>
-											<h2>{{bloco.subtitulo}}</h2>
-										</div>
-	
-										<div v-else class="has-text-left section-corrido">
+									<div class="section section-capitular">
+										<h1>{{getPaginaInicial.titulo}}</h1>
+										<h2>{{getPaginaInicial.subtitulo}}</h2>
+									</div>
+
+									<div class="has-text-left section-corrido">
+										<div v-for="(bloco, index) in getContent">
 											<div class="bloco-fala">
 												<p class="has-text-weight-bold">{{bloco.autor}}</p>
 												<div v-for="row in bloco.fala.split('\n')">
