@@ -8,57 +8,115 @@ var App = new Vue({
           "subtitulo": "Um casal e o pôr do sol"
        },
        {
-         "autor": "Róssia",
-         "fala": 
-          `ah meu amor!
-          que bom te ver`
-       },
-       {
-        "autor": "Jobin",
-        "fala": 
-         `ola`
-       },
-       {
         "autor": "Guarda",
         "fala": 
          `fala rapeize`
-       }
+       },
+       {
+         "tipo": "escolha",
+          "opcoes": [
+            { 
+              "label":"bater",
+              "bloco":{
+                "autor": "Jobin",
+                "fala": "tome isto!"
+              },
+              "resultado":[
+                {
+                  "autor": "guarda",
+                  "fala": "Você é um fracote!"
+                },
+              ]
+            },
+            {
+              "label":"correr",
+              "bloco":{
+                "autor": "Jobin",
+                "fala": "falous!"
+              },
+              "resultado":[
+                {
+                  "autor": "guarda",
+                  "fala": "volte aqui covarde!"
+                }
+              ]
+            },
+            {
+              "label":"aaaa",
+              "bloco":{
+                "autor": "Jobin",
+                "fala": "aaa!"
+              },
+              "resultado":[
+                {
+                  "autor": "guarda",
+                  "fala": "aaaaa!"
+                }
+              ]
+            }
+          ]
+       },
+       {
+        "autor": "Róssia",
+        "fala": "ai ai..."
+      },
      ],
      content: [],
      index: 0
     }
   },
   beforeMount(){
-    this.runTests();
-    document.addEventListener('keydown', () => this.run()); 
+    //this.runTests();
+    document.addEventListener('keydown', e => { e.code == "Space"? this.run():"" }); 
   },
   mounted(){
-    this.run(0);
+    console.log(this.capitulo0[2].opcoes[0]);
+    console.log(this.capitulo0[2].opcoes[1]);
+    this.run();
+    //this.goTo(0, 4)
   },
   computed: {
-    getPaginaInicial(){
-      return this.content.length>0?this.content[0]:{}
-    },
-    getContent(){
-      //console.log(this.content.slice(1));
-      return this.content.slice(1)
-    }
+    
   },
   methods: {
-    run(){
-      if(this.index < this.capitulo0.length){
+    updateScroll(){
+      console.log("update scroll");
+      console.log(panel_dom);
+      panel_dom.scrollTop = 100000;
+    },
+    run(escolha_index = -1){
+      //this.updateScroll()
+      if(escolha_index > -1){
+        //insere no capitulo o grupo de blocos dessa opção
+        let bloco_escolha = this.capitulo0[this.index-1].opcoes[escolha_index];
+        this.content.pop()//push(bloco_escolha.bloco)
+        //this.content.push(bloco_escolha.bloco)
+        //this.capitulo0.splice(this.index, 0, bloco_escolha.resultado)
+        //this.run()
+        bloco_escolha.resultado.reverse().forEach(bloco => {
+          //console.log(bloco);
+          this.capitulo0.splice(this.index, 0, bloco)
+        });
+        this.capitulo0.splice(this.index, 0, bloco_escolha.bloco)
+        //this.index++;
+        //panel_dom.scrollTop = panel_dom.scrollHeight;
+      } //else if(this.index < this.capitulo0.length){
         this.content.push(this.capitulo0[this.index])
         this.index++;
-        panel_dom.scrollTop = panel_dom.scrollHeight;
-      }else{
-        this.reset()
-      }
+        
+      //}else{
+        //this.reset()
+      //}
+    },
+    escolhe(escolha_index){
+      console.log("a");
+      this.run(escolha_index)
     },
     goTo(capitulo_index, bloco_index){
       //console.log(this.content);
       for (let i = 0; i < bloco_index; i++) {
         //console.log(this.capitulo0[i])
-        this.content.push(this.capitulo0[i])
+        this.run()//content.push(this.capitulo0[i])
         //const element = array[i];
       }
       //console.log(this.content);
@@ -68,6 +126,7 @@ var App = new Vue({
       this.index = 0
     },
     runTests(){
+      this.reset();
       runBlocosTests(this)
       this.reset();
     }

@@ -16,22 +16,30 @@
 							<div class="main-container">
 								<div class="h-50 is-black is-centered">
 									<figure>
-										<img class="full-height" src="https://wallpaperaccess.com/full/797185.png">
+										<img class="full-height" src="https://bulma.io/images/placeholders/600x480.png">
 									</figure>
 								</div>
 								<div id="#panel" class="h-50 is-black bordered-top">
-									<div class="section section-capitular">
-										<h1>{{getPaginaInicial.titulo}}</h1>
-										<h2>{{getPaginaInicial.subtitulo}}</h2>
+									<div v-if="content[0]" class="section section-capitular">
+										<h1>{{content[0].titulo}}</h1>
+										<h2>{{content[0].subtitulo}}</h2>
 									</div>
 
 									<div class="has-text-left section-corrido">
-										<div v-for="(bloco, index) in getContent">
-											<div class="bloco-fala">
+										<div v-for="(bloco, index) in content.slice(1)">
+											<div v-if="bloco.tipo == undefined" class="bloco-fala">
 												<p class="has-text-weight-bold">{{bloco.autor}}</p>
 												<div v-for="row in bloco.fala.split('\n')">
 													<p>{{row}}</p>
 												</div>
+											</div>
+											<div v-else-if="bloco.tipo == 'escolha'" class="bloco-escolha">
+												<p
+													v-for="(opcao, index) in bloco.opcoes"
+													v-on:click="escolhe(index)"
+												>
+													&nbsp;- {{opcao.label}}
+												</p>
 											</div>
 										</div>
 									</div>
