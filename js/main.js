@@ -29,14 +29,20 @@ var App = new Vue({
     }
   },
   beforeMount(){
-    //this.runTests();
+    this.runTests();
     document.addEventListener('keydown', () => this.run()); 
   },
   mounted(){
     this.run(0);
   },
   computed: {
-
+    getPaginaInicial(){
+      return this.content.length>0?this.content[0]:{}
+    },
+    getContent(){
+      //console.log(this.content.slice(1));
+      return this.content.slice(1)
+    }
   },
   methods: {
     run(){
@@ -47,13 +53,13 @@ var App = new Vue({
       }
     },
     goTo(capitulo_index, bloco_index){
-      console.log(this.content);
+      //console.log(this.content);
       for (let i = 0; i < bloco_index; i++) {
-        console.log(this.capitulo0[i])
+        //console.log(this.capitulo0[i])
         this.content.push(this.capitulo0[i])
         //const element = array[i];
       }
-      console.log(this.content);
+      //console.log(this.content);
     },
     reset(){
       this.content = []
