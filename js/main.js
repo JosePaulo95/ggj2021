@@ -19,7 +19,7 @@ var App = new Vue({
     this.capitulos.push(_creditos);
   },
   mounted(){
-    this.reset(2)
+    this.reset(0)
     //this.run();
   },
   computed: {
