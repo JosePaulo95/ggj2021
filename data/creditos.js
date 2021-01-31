@@ -17,10 +17,5 @@ const _creditos = {
         "autor": "Equipe FMA",
         "fala": "Clistenys, Daniel, Mario, Pedro e outros pelo brainstorming original",
         "next": 1
-    },
-    "4": {
-        "autor": "Tecnologias",
-        "fala": "Clistenys, Daniel, Mario, Pedro e outros pelo brainstorming original",
-        "next": 1
     }
   }
