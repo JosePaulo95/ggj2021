@@ -6,9 +6,9 @@ var App = new Vue({
       content: [],
       index_bloco: 0,
       index_capitulo: 0,
-      MAX_HP: 3,
+      MAX_HP: 5,
       hp: 0,
-      imagens_src: ["img/prologo.png", "img/capitulo1.png", "img/capitulo2.png"],
+      imagens_src: ["img/prologo.png", "img/capitulo1.png", "img/capitulo2.png", "img/creditos.png"],
     }
   },
   beforeMount(){
@@ -16,6 +16,7 @@ var App = new Vue({
     this.capitulos.push(_prologo);
     this.capitulos.push(_capitulo1);
     this.capitulos.push(_capitulo2);
+    this.capitulos.push(_creditos);
   },
   mounted(){
     this.reset(0)
