@@ -19,7 +19,7 @@ var App = new Vue({
     this.capitulos.push(_creditos);
   },
   mounted(){
-    this.reset(0)
+    this.reset(2)
     //this.run();
   },
   computed: {
@@ -75,6 +75,7 @@ var App = new Vue({
         this.index_bloco = index_escolhido
       }else if(this.content.length > 0){
         //seguindo árvore
+        AudioController.playBeep("grab")
         const index_next = this.Capitulo[this.index_bloco].next?this.Capitulo[this.index_bloco].next:this.index_bloco+1
         const bloco_next = trataFalaHp(this.Capitulo[index_next])
         this.content.push(bloco_next);

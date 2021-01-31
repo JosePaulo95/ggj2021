@@ -126,8 +126,7 @@ const _capitulo2 = {
       "autor": "saro",
       "fala": `HaHaHa!
       Este é seu plano?
-      Ouçam, presentes, o doce som desta forma agonizando.`,
-      "next": 281
+      Ouçam, presentes, o doce som desta forma agonizando.`
     },
     "29":{
       "tipo": "narracao",
