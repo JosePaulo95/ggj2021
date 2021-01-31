@@ -8,7 +8,7 @@ var App = new Vue({
       index_capitulo: 0,
       MAX_HP: 3,
       hp: 0,
-      imagens_src: ["img/prologo.png", "img/capitulo1.png", "img/capitulo1.png"],
+      imagens_src: ["img/prologo.png", "img/capitulo1.png", "img/capitulo2.png"],
     }
   },
   beforeMount(){
