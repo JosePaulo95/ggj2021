@@ -2,124 +2,105 @@ var App = new Vue({
   el: "#app",
   data() {
     return {
-     capitulo0: [
-       {
-          "titulo": "Prologo",
-          "subtitulo": "Um casal e o pôr do sol"
+     capitulo0: {
+       "0": {
+        "titulo": "Prologo",
+        "subtitulo": "Um casal e o pôr do sol",
+        "next": 1
        },
-       {
+       "1": {
         "autor": "Guarda",
-        "fala": 
-         `fala rapeize`
+        "fala": `fala rapeize`,
+        "next": 3
        },
-       {
-         "tipo": "escolha",
-          "opcoes": [
-            { 
-              "label":"bater",
-              "bloco":{
-                "autor": "Jobin",
-                "fala": "tome isto!"
-              },
-              "resultado":[
-                {
-                  "autor": "guarda",
-                  "fala": "Você é um fracote!"
-                },
-              ]
-            },
-            {
-              "label":"correr",
-              "bloco":{
-                "autor": "Jobin",
-                "fala": "falous!"
-              },
-              "resultado":[
-                {
-                  "autor": "guarda",
-                  "fala": "volte aqui covarde!"
-                }
-              ]
-            },
-            {
-              "label":"aaaa",
-              "bloco":{
-                "autor": "Jobin",
-                "fala": "aaa!"
-              },
-              "resultado":[
-                {
-                  "autor": "guarda",
-                  "fala": "aaaaa!"
-                }
-              ]
-            }
-          ]
+       "2": {
+        "autor": "AISJAI",
+        "fala": "essa fala nao deve aparecer",
+        "next": 7
        },
-       {
-        "autor": "Róssia",
-        "fala": "ai ai..."
-      },
-     ],
+       "3": {
+        "autor": "GUARDA",
+        "fala": "3a fala",
+        "next": 4
+       },
+       "4": {
+        "tipo": "escolha-fala",
+        "index_opcoes": [5, 6]
+       },
+       "5": {
+        "autor": "JOBIN",
+        "fala": "correr",
+        "next": 7
+       },
+       "6": {
+        "autor": "JOBIN",
+        "fala": "bater",
+        "next": 8
+       },
+       "7": {
+        "tipo": "narracao",
+        "fala": "e jobin sai correndo",
+        "next": 3
+       },
+       "8": {
+        "tipo": "narracao",
+        "fala": "e jobin bate no cara",
+        "next": 3
+       },
+    },
      content: [],
      index: 0
     }
   },
   beforeMount(){
-    //this.runTests();
     document.addEventListener('keydown', e => { e.code == "Space"? this.run():"" }); 
   },
   mounted(){
-    console.log(this.capitulo0[2].opcoes[0]);
-    console.log(this.capitulo0[2].opcoes[1]);
+    console.log(this.Capitulo.map(b => b.tipo))
     this.run();
-    //this.goTo(0, 4)
   },
   computed: {
-    
+    Capitulo(){
+      var result = []
+      Object.keys(this.capitulo0).map((key) => result[key] = this.capitulo0[key]);
+      return result;
+    }
   },
   methods: {
     updateScroll(){
-      console.log("update scroll");
-      console.log(panel_dom);
-      panel_dom.scrollTop = 100000;
+      panel_dom.scrollTop = panel_dom.scrollHeight;
     },
-    run(escolha_index = -1){
-      //this.updateScroll()
-      if(escolha_index > -1){
-        //insere no capitulo o grupo de blocos dessa opção
-        let bloco_escolha = this.capitulo0[this.index-1].opcoes[escolha_index];
-        this.content.pop()//push(bloco_escolha.bloco)
-        //this.content.push(bloco_escolha.bloco)
-        //this.capitulo0.splice(this.index, 0, bloco_escolha.resultado)
-        //this.run()
-        bloco_escolha.resultado.reverse().forEach(bloco => {
-          //console.log(bloco);
-          this.capitulo0.splice(this.index, 0, bloco)
-        });
-        this.capitulo0.splice(this.index, 0, bloco_escolha.bloco)
-        //this.index++;
-        //panel_dom.scrollTop = panel_dom.scrollHeight;
-      } //else if(this.index < this.capitulo0.length){
-        this.content.push(this.capitulo0[this.index])
-        this.index++;
-        
-      //}else{
-        //this.reset()
-      //}
+    run(index_escolhido = -1){
+      if(index_escolhido == -1 && this.content[this.content.length-1]?.tipo == "escolha-fala")
+        return
+
+      if(index_escolhido != -1){//escolheu fala
+        const bloco_next = this.capitulo0[index_escolhido]
+        this.content.pop();
+        this.content.push(bloco_next);
+        this.index = index_escolhido
+      }else if(this.content.length > 0){
+        const index_next = this.capitulo0[this.index].next
+        const bloco_next = this.capitulo0[index_next]
+        this.content.push(bloco_next);
+        this.index = index_next
+      }else{
+        const bloco_titulo = this.capitulo0[0]
+        this.content.push(bloco_titulo);
+      }
+      console.log(this.capitulo0[this.index].fala)
     },
     escolhe(escolha_index){
-      console.log("a");
       this.run(escolha_index)
     },
     goTo(capitulo_index, bloco_index){
-      //console.log(this.content);
+
       for (let i = 0; i < bloco_index; i++) {
-        //console.log(this.capitulo0[i])
-        this.run()//content.push(this.capitulo0[i])
-        //const element = array[i];
+  
+        this.ru
+  
       }
-      //console.log(this.content);
+
     },
     reset(){
       this.content = []
