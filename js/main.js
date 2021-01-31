@@ -6,7 +6,8 @@ var App = new Vue({
       content: [],
       index_bloco: 0,
       index_capitulo: 0,
-      hp: 3
+      MAX_HP: 3,
+      hp: 0
     }
   },
   beforeMount(){
@@ -55,7 +56,7 @@ var App = new Vue({
         if(this.hp <= 0){
           return {"tipo":"narracao", "fala":"jobin morre", "dead_end": true}
         }else{
-          return {...bloco, "fala":bloco.fala.replace("$hp", this.hp)}
+          return {...bloco, "fala":bloco.fala?.replace("$hp", this.hp)}
         }
         
       }
@@ -95,6 +96,7 @@ var App = new Vue({
       this.content = []
       this.index_capitulo = index_cap
       this.index_bloco = 0
+      this.hp = this.MAX_HP
     },
     runTests(){
       this.reset();
