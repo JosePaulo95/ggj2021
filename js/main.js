@@ -7,7 +7,8 @@ var App = new Vue({
       index_bloco: 0,
       index_capitulo: 0,
       MAX_HP: 3,
-      hp: 0
+      hp: 0,
+      imagens_src: ["img/prologo.png", "img/capitulo1.png", "img/capitulo1.png"],
     }
   },
   beforeMount(){
@@ -17,7 +18,7 @@ var App = new Vue({
     this.capitulos.push(_capitulo2);
   },
   mounted(){
-    this.reset(2)
+    this.reset(0)
     //this.run();
   },
   computed: {
@@ -36,12 +37,17 @@ var App = new Vue({
       panel_dom.scrollTop = panel_dom.scrollHeight;
     },
     run(index_escolhido = -1){
+      const tipo = this.content[this.content.length-1]?.tipo;
       //precisa escolher, não escolheu mas apertou barra de espaço
-      if(index_escolhido == -1 && this.content[this.content.length-1]?.tipo == "escolha-fala")
+      if(index_escolhido == -1 && tipo == "escolha-fala")
         return
 
       if(this.content[this.content.length-1]?.happy_end){
-        this.reset(this.index_capitulo+1, 0)
+        if(this.index_capitulo+1 < this.capitulos.length){
+          this.reset(this.index_capitulo+1, 0)
+        }else{
+          return
+        }
       }
 
       if(this.content[this.content.length-1]?.dead_end){
@@ -58,11 +64,10 @@ var App = new Vue({
         }else{
           return {...bloco, "fala":bloco.fala?.replace("$hp", this.hp)}
         }
-        
       }
 
       if(index_escolhido != -1){
-        //escolheu fala
+        //escolheu fala ou item
         const bloco_next = this.Capitulo[index_escolhido]
         this.content.pop();
         this.content.push(bloco_next);
@@ -78,19 +83,10 @@ var App = new Vue({
         const bloco_titulo = this.Capitulo[0]
         this.content.push(bloco_titulo);
       }
-      console.log(this.Capitulo[this.index_bloco].fala)
+      console.log(this.Capitulo[this.index_bloco].tipo)
     },
     escolhe(escolha_index){
       this.run(escolha_index)
-    },
-    goTo(capitulo_index, bloco_index){
-
-      for (let i = 0; i < bloco_index; i++) {
-  
-        this.ru
-  
-      }
-
     },
     reset(index_cap){
       this.content = []

@@ -97,6 +97,7 @@ const _capitulo1 = {
     },
     "24" : {
       "tipo": "narracao",
-      "fala": "parte. Fim do capítulo 1"
+      "fala": "parte. Fim do capítulo 1",
+      "happy_end": true
     }
   }
