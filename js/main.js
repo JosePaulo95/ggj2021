@@ -56,6 +56,7 @@ var App = new Vue({
       }
 
       if(this.content[this.content.length-1]?.porrada){
+        AudioController.playBeep("scratch")
         this.hp -= 1
       }
 
@@ -69,6 +70,7 @@ var App = new Vue({
 
       if(index_escolhido != -1){
         //escolheu fala ou item
+        AudioController.playBeep("click")
         const bloco_next = this.Capitulo[index_escolhido]
         this.content.pop();
         this.content.push(bloco_next);
@@ -80,6 +82,10 @@ var App = new Vue({
         const bloco_next = trataFalaHp(this.Capitulo[index_next])
         this.content.push(bloco_next);
         this.index_bloco = index_next
+
+        if(bloco_next?.fala?.includes("inteirinho")){
+          AudioController.playBeep("ipanema")
+        }
       }else{
         //inicializa
         const bloco_titulo = this.Capitulo[0]
@@ -87,6 +93,7 @@ var App = new Vue({
         AudioController.stop()
         AudioController.playSound(this.index_capitulo)
       }
+
       console.log(this.Capitulo[this.index_bloco].tipo)
     },
     escolhe(escolha_index){
