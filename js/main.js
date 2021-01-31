@@ -1,5 +1,3 @@
-
-
 var App = new Vue({
   el: "#app",
   data() {
@@ -8,15 +6,17 @@ var App = new Vue({
       content: [],
       index_bloco: 0,
       index_capitulo: 0,
+      hp: 3
     }
   },
   beforeMount(){
     document.addEventListener('keydown', e => { e.code == "Space"? this.run():"" }); 
     this.capitulos.push(_prologo);
     this.capitulos.push(_capitulo1);
+    this.capitulos.push(_capitulo2);
   },
   mounted(){
-    this.reset(0)
+    this.reset(2)
     //this.run();
   },
   computed: {
@@ -47,6 +47,19 @@ var App = new Vue({
         this.reset(this.index_capitulo, 0)
       }
 
+      if(this.content[this.content.length-1]?.porrada){
+        this.hp -= 1
+      }
+
+      const trataFalaHp = bloco => {
+        if(this.hp <= 0){
+          return {"tipo":"narracao", "fala":"jobin morre", "dead_end": true}
+        }else{
+          return {...bloco, "fala":bloco.fala.replace("$hp", this.hp)}
+        }
+        
+      }
+
       if(index_escolhido != -1){
         //escolheu fala
         const bloco_next = this.Capitulo[index_escolhido]
@@ -56,7 +69,7 @@ var App = new Vue({
       }else if(this.content.length > 0){
         //seguindo árvore
         const index_next = this.Capitulo[this.index_bloco].next?this.Capitulo[this.index_bloco].next:this.index_bloco+1
-        const bloco_next = this.Capitulo[index_next]
+        const bloco_next = trataFalaHp(this.Capitulo[index_next])
         this.content.push(bloco_next);
         this.index_bloco = index_next
       }else{
