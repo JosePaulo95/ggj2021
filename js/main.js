@@ -82,6 +82,8 @@ var App = new Vue({
         //inicializa
         const bloco_titulo = this.Capitulo[0]
         this.content.push(bloco_titulo);
+        AudioController.stop()
+        AudioController.playSound(this.index_capitulo)
       }
       console.log(this.Capitulo[this.index_bloco].tipo)
     },
