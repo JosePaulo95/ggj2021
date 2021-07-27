@@ -14,6 +14,10 @@ const _creditos = {
         "fala": "Hannah e Gleydson pelo apoio"
     }, 
     "3": {
+        "autor": "Toque de mestre",
+        "fala": "Artur Assunção por setar o tom debochado enquanto politicamente correto"
+    }, 
+    "4": {
         "autor": "Equipe FMA",
         "fala": "Clistenys, Daniel, Mario, Pedro e outros pelo brainstorming original",
         "next": 1
