@@ -29,10 +29,10 @@ const _capitulo2 = {
   "600": {
     "autor": "Saro",
     "fala": "Still standing?",
-    "next": 7
+    "next": "7"
   },
   "7": {
-    "tipo": "choice-speech",
+    "tipo": "escolha-fala",
     "index_opcoes": [8, 11, 13]
   },
   "8": {
@@ -67,7 +67,7 @@ const _capitulo2 = {
     "next": 15
   },
   "15": {
-    "tipo": "choice-speech",
+    "tipo": "escolha-fala",
     "index_opcoes": [16, 19, 22]
   },
   "16": {
@@ -146,7 +146,7 @@ const _capitulo2 = {
   },
   "32": {
     "fala": "shield",
-    "tipo": "choice-speech",
+    "tipo": "escolha-fala",
     "index_opcoes": [33, 37]
   },
   "33": {
@@ -197,7 +197,7 @@ const _capitulo2 = {
       What makes you think I would want to receive this?`,
     },
     "43": {
-      "tipo": "choice-speech",
+      "tipo": "escolha-fala",
       "index_opcoes": [44, 45],
     },
     "44": {
@@ -233,7 +233,7 @@ const _capitulo2 = {
     },
     "51": {
       "fala": "guitar",
-      "tipo": "choice-speech",
+      "tipo": "escolha-fala",
       "index_opcoes": [52]
     },
     "52": {
