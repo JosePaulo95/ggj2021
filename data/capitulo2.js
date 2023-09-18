@@ -182,7 +182,7 @@ const _capitulo2 = {
     "next": 200
   },
     "40": {
-      "fala": "flor",
+      "fala": "flower",
       "tipo": "escolha-fala",
       "index_opcoes": [41]
     }, 
