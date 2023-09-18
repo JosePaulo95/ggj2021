@@ -62,7 +62,7 @@ var App = new Vue({
 
       const trataFalaHp = bloco => {
         if(this.hp <= 0){
-          return {"tipo":"narracao", "fala":"jobin morre", "dead_end": true}
+          return {"tipo":"narracao", "fala":"jobin dies", "dead_end": true}
         }else{
           return {...bloco, "fala":bloco.fala?.replace("$hp", this.hp)}
         }
