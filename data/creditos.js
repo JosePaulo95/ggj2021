@@ -1,17 +1,17 @@
 const _creditos = {
     "0": {
-        "titulo": "FIM",
-        "subtitulo": "Obrigado por jogar",
+        "titulo": "END",
+        "subtitulo": "Thanks for playing",
     },
     "1": {
-        "autor": "Equipe",
-        "fala": `Pablo Muniz (arte) 
-        Sidney Melo (texto e música)
-        José Paulo (texto e programação)`
+        "autor": "Team",
+        "fala": `Pablo Muniz (art) 
+        Sidney Melo (text and music)
+        José Paulo (text e programming)`
     }, 
     "2": {
-        "autor": "MENÇÕES s2",
-        "fala": "Hannah e Gleydson pelo apoio"
+        "autor": "MENTIONS s2",
+        "fala": "Hannah e Gleydson for the support"
     }, 
     "3": {
         "autor": "Toque de mestre",
